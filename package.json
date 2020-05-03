@@ -1,0 +1,16 @@
+{
+  "name": "routinetracker",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "shadow-cljs": "2.8.94"
+  },
+  "dependencies": {
+    "create-react-class": "^15.6.3",
+    "framework7": "^5.5.5",
+    "framework7-react": "^5.5.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "semantic-ui-react": "^0.88.2"
+  }
+}
