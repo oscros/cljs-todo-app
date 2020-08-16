@@ -1,0 +1,26 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src"]
+
+ :dependencies
+ [[cider/cider-nrepl "0.21.0"]
+  [binaryage/devtools "1.0.0"]
+  ; [reagent "0.8.1"] old
+  ; [reagent "0.9.1"] used by Tomas
+  [reagent "1.0.0-alpha2"]] ; latest
+ 
+ :nrepl {:port 3333}
+ 
+ :builds
+ {:app {:target :browser
+        :output-dir "public/js"
+        :asset-path "/js"
+
+        :modules
+        {:main
+         {:entries [app.frontend.core]}}
+
+        :devtools
+        {:preloads [devtools.core]
+         :http-root   "public"
+         :http-port   3000}}}}
