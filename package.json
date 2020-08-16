@@ -6,8 +6,11 @@
     "shadow-cljs": "2.8.94"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+=======
+>>>>>>> 02e7c23786992af391d26bbde0932451408e93a2
     "create-react-class": "^15.6.3",
     "framework7": "^5.5.5",
     "framework7-react": "^5.5.5",

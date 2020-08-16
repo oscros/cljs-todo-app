@@ -3,6 +3,7 @@
  ["src"]
 
  :dependencies
+<<<<<<< HEAD
  [[cider/cider-nrepl "0.21.0"]
   [binaryage/devtools "1.0.0"]
   ; [reagent "0.8.1"] old
@@ -11,6 +12,13 @@
  
  :nrepl {:port 3333}
  
+=======
+ [[binaryage/devtools "1.0.0"]
+  [reagent "0.8.1"]
+  [cider/cider-nrepl "0.21.0"]]
+
+;  :nrepl {:port 3333}
+>>>>>>> 02e7c23786992af391d26bbde0932451408e93a2
  :builds
  {:app {:target :browser
         :output-dir "public/js"
@@ -19,7 +27,11 @@
         :modules
         {:main
          {:entries [app.frontend.core]}}
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 02e7c23786992af391d26bbde0932451408e93a2
         :devtools
         {:preloads [devtools.core]
          :http-root   "public"
