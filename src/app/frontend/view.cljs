@@ -22,6 +22,10 @@
             ["@material-ui/core/Button" :default Button]
             ["@material-ui/core/Fab" :default Fab]
             ["@material-ui/core/Dialog" :default Dialog]
+            ["@material-ui/core/DialogTitle" :default DialogTitle]
+            ["@material-ui/core/DialogContentText" :default DialogContentText]
+            ["@material-ui/core/DialogActions" :default DialogActions]
+            ["@material-ui/core/DialogContent" :default DialogContent]
             ["@material-ui/core/Slide" :default Slide]
             
             ["@material-ui/icons/List" :default ListIcon]
@@ -41,7 +45,21 @@
             ;;; !!! :font-family "Roboto, sans-serif"}})))
             ;:fontSize 12}})))
 
-(defn frame 
+(defn dialog-component
+  []
+[:> Dialog {:fullscreen "true" :open (:is-modal-open @app-state-atom) :onClose (fn []
+                                                                                 (close-add-modal!))
+            :keepMounted true
+            :TransitionComponent Slide
+            :Transition-props     {:direction "up"}}
+ [:> DialogTitle "test title"]
+ [:> DialogContent
+  [:> DialogContentText "testing the text content in dialog"]]
+ [:> DialogActions
+  [:> Button {:color "secondary"} "cancel"]
+  [:> Button {:color "primary"} "Create"]]])
+
+(defn frame
   [content]
   [:> MuiThemeProvider
    {:theme (custom-theme)}
@@ -72,15 +90,12 @@
     [:> Button {:color :primary :variant :contained :onClick (fn []
                                                                (change-content! "TESTSTES"))}  "button"]
     [:> Fab {:color :primary :aria-label "add" :style {:position "absolute"
-                                                        :bottom "1rem"
-                                                        :right "1rem"}
+                                                       :bottom "1rem"
+                                                       :right "1rem"}
              :onClick (fn []
                         (open-add-modal!))}
      [:> AddIcon]]
-    [:> Dialog {:fullscreen "true" :open (:is-modal-open @app-state-atom) :onClose (fn []
-                                                                                     (close-add-modal!))
-                :TransitionComponent [:> Slide {:direction "up"}]}
-     ]]])
+    (dialog-component)]])
 
 
 (defn app-component

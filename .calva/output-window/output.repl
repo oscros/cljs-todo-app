@@ -1,0 +1,59 @@
+; This is the Calva evaluation results output window.
+; Leave it open, please. Because quirks.
+; TIPS: The keyboard shortcut `ctrl+alt+c o` shows and focuses this window
+;   when connected to a REPL session.
+; Please see https://calva.io/output/ for more info.
+; Happy coding! ♥️
+
+; Connecting ...
+; Hooking up nREPL sessions...
+; Connected session: clj
+; TIPS: 
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - File URLs in stacktrace frames are peekable and clickable.
+clj::shadow.user=> 
+; Creating cljs repl session...
+; Connecting cljs repl: shadow-cljs...
+;   The Calva Connection Log might have more connection progress information.
+; Connected session: cljs, repl: :app
+; TIPS: You can choose which REPL to use (clj or cljs):
+;    *Calva: Toggle REPL connection*
+;    (There is a button in the status bar for this)
+cljs::cljs.user=> 
+; Evaluating file: core.cljc
+#'app.logic.core/add-new-to-do
+clj::app.logic.core=> 
+; Running namespace tests…
+; ERROR in app.logic.core/create-to-do (line 22):
+; Uncaught exception, not in assertion
+;   error: java.lang.AssertionError: Assert failed: (number? id) (core.cljc)
+;   expected: undefined
+; 2 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 1
+; Evaluating file: core.cljc
+#'app.logic.core/add-new-to-do
+clj::app.logic.core=> 
+; Running namespace tests…
+An error was expected.
+; FAIL in app.logic.core/create-to-do (core.cljc:22):
+; An error was expected:(create-to-do "999" 123 321)
+;   expected: false
+;   actual: false
+; 2 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 1
+; Evaluating file: core.cljc
+#'app.logic.core/add-new-to-do
+clj::app.logic.core=> 
+; Running namespace tests…
+; ERROR in app.logic.core/create-to-do (line 22):
+; Uncaught exception, not in assertion
+;   error: java.lang.AssertionError: Assert failed: (number? id) (core.cljc)
+;   expected: undefined
+; 2 tests finished, problems found. 😭 errors: 1, failures: 0, ns: 1, vars: 1
+; Evaluating file: core.cljc
+#'app.logic.core/add-new-to-do
+clj::app.logic.core=> 
+; Running namespace tests…
+; 2 tests finished, all passing 👍, ns: 1, vars: 1

@@ -5,6 +5,7 @@
  :dependencies
  [[cider/cider-nrepl "0.21.0"]
   [binaryage/devtools "1.0.0"]
+  [ysera "2.0.2"]
   ; [reagent "0.8.1"] old
   ; [reagent "0.9.1"] used by Tomas
   [reagent "1.0.0-alpha2"]] ; latest

@@ -25,6 +25,14 @@
   []
   (swap! app-state-atom assoc :is-modal-open false))
 
+
+
+(defn create-to-do!
+  [title description]
+  (swap! app-state-atom update :to-dos (partial conj {:id (+ (count (:to-dos @app-state-atom)) 1)
+                                                      :title title 
+                                                      :description description})))
+
 ;; (defn touch-state-change!
 ;;   [touch-state]
 ;;   (swap! app-state-atom assoc :touch-state touch-state))

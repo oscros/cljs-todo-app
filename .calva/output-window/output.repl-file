@@ -21,3 +21,4 @@ clj::shadow.user=>
 ;    *Calva: Toggle REPL connection*
 ;    (There is a button in the status bar for this)
 cljs::cljs.user=> 
+; nREPL Connection was closed
