@@ -1,5 +1,6 @@
 (ns app.frontend.events
-  (:require [app.frontend.state :refer [app-state-atom]]))
+  (:require [app.frontend.state :refer [app-state-atom]]
+            [app.logic.core :refer [add-new-to-do]]))
 
 (defn set-active-tab
   [app-state tab-key]
@@ -7,8 +8,8 @@
 
 (defn change-content!
   [content]
-  (do (print "changing content"))
   (swap! app-state-atom assoc :content content))
+
 (defn open-drawer!
   []
   (swap! app-state-atom assoc :is-drawer-open true))
@@ -25,13 +26,11 @@
   []
   (swap! app-state-atom assoc :is-modal-open false))
 
-
-
 (defn create-to-do!
   [title description]
-  (swap! app-state-atom update :to-dos (partial conj {:id (+ (count (:to-dos @app-state-atom)) 1)
-                                                      :title title 
-                                                      :description description})))
+  (print "create new todo")
+  (print title description)
+  (swap! app-state-atom add-new-to-do title description))
 
 ;; (defn touch-state-change!
 ;;   [touch-state]

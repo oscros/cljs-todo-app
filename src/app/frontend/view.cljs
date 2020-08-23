@@ -12,6 +12,7 @@
             ["@material-ui/core/CssBaseline" :default CssBaseline]
             ["@material-ui/core/Typography" :default Typography]
             ["@material-ui/core/AppBar" :default AppBar]
+            ["@material-ui/core/TextField" :default TextField]
             ["@material-ui/core/SwipeableDrawer" :default SwipeableDrawer]
             ["@material-ui/core/List" :default List]
             ["@material-ui/core/ListItem" :default ListItem]
@@ -52,11 +53,14 @@
             :keepMounted true
             :TransitionComponent Slide
             :Transition-props     {:direction "up"}}
- [:> DialogTitle "test title"]
+ [:> DialogTitle "Create new To Do"]
  [:> DialogContent
-  [:> DialogContentText "testing the text content in dialog"]]
+  [:> DialogContentText "Please enter a title and description for the new to do"]
+  [:> TextField {:margin "dense" :id "title-field" :label "Title" :required true :fullWidth true}]
+  [:> TextField {:margin "dense" :id "description-field" :label "Description" :required true :fullWidth true}]]
  [:> DialogActions
-  [:> Button {:color "secondary"} "cancel"]
+  [:> Button {:color "secondary" :onClick (fn []
+                                            (close-add-modal!))} "cancel"]
   [:> Button {:color "primary"} "Create"]]])
 
 (defn frame
