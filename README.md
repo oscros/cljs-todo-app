@@ -1,5 +1,13 @@
 python -m SimpleHTTPServer
 
+# Requirements
+Leiningen 
+Clojure
+Calva
+nodeJS
+s
+
+
 # How to connect calva 
 https://www.youtube.com/watch?v=c9I1B1VZies
 1. npx shadow-cljs watch app
