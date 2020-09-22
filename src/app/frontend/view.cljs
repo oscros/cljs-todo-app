@@ -4,7 +4,8 @@
                                          open-drawer!
                                          close-drawer!
                                          open-add-modal!
-                                         close-add-modal!]]
+                                         close-add-modal!
+                                         create-to-do!]]
             [app.frontend.state :refer [app-state-atom]]
             ["@material-ui/core/styles" :rename {ThemeProvider MuiThemeProvider}]
             ["@material-ui/core/styles" :refer [createMuiTheme makeStyles]]
@@ -48,20 +49,25 @@
 
 (defn dialog-component
   []
-[:> Dialog {:fullscreen "true" :open (:is-modal-open @app-state-atom) :onClose (fn []
-                                                                                 (close-add-modal!))
-            :keepMounted true
-            :TransitionComponent Slide
-            :Transition-props     {:direction "up"}}
- [:> DialogTitle "Create new To Do"]
- [:> DialogContent
-  [:> DialogContentText "Please enter a title and description for the new to do"]
-  [:> TextField {:margin "dense" :id "title-field" :label "Title" :required true :fullWidth true}]
-  [:> TextField {:margin "dense" :id "description-field" :label "Description" :required true :fullWidth true}]]
- [:> DialogActions
-  [:> Button {:color "secondary" :onClick (fn []
-                                            (close-add-modal!))} "cancel"]
-  [:> Button {:color "primary"} "Create"]]])
+  (let [dialog-input-atom (r/atom {:title ""
+                                   :description ""})]
+    [:> Dialog {:fullscreen "true" :open (:is-modal-open @app-state-atom) :onClose (fn []
+                                                                                     (close-add-modal!))
+                :keepMounted true
+                :TransitionComponent Slide
+                :Transition-props     {:direction "up"}}
+     [:> DialogTitle "Create new To Do"]
+     [:> DialogContent
+      [:> DialogContentText "Please enter a title and description for the new to do"]
+      [:> TextField {:margin "dense" :id "title-field" :label "Title" :required true :fullWidth true :onChange (fn [event]
+                                                                                                                 (swap! dialog-input-atom assoc :title (.-value (.-target event))))}]
+      [:> TextField {:margin "dense" :id "description-field" :label "Description" :required true :fullWidth true :onChange (fn [event]
+                                                                                                                             (swap! dialog-input-atom assoc :description (.-value (.-target event))))}]]
+     [:> DialogActions
+      [:> Button {:color "secondary" :onClick (fn []
+                                                (close-add-modal!))} "cancel"]
+      [:> Button {:color "primary" :onClick (fn []
+                                              (create-to-do! (:title @dialog-input-atom) (:description @dialog-input-atom)))} "Create"]]]))
 
 (defn frame
   [content]
