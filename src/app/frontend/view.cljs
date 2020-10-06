@@ -5,8 +5,13 @@
                                          close-drawer!
                                          open-add-modal!
                                          close-add-modal!
-                                         create-to-do!]]
+                                         create-to-do!
+                                         switch-todo-done-state!
+                                         remove-todo!]]
+            [app.logic.core :refer [is-todo-done?]]
             [app.frontend.state :refer [app-state-atom]]
+            [app.frontend.createTodoDialog :refer [create-todo-dialog]]
+            [app.frontend.todoList :refer [todo-list]]
             ["@material-ui/core/styles" :rename {ThemeProvider MuiThemeProvider}]
             ["@material-ui/core/styles" :refer [createMuiTheme makeStyles]]
             ["@material-ui/core/colors" :as mui-colors]
@@ -19,20 +24,16 @@
             ["@material-ui/core/ListItem" :default ListItem]
             ["@material-ui/core/ListItemIcon" :default ListItemIcon]
             ["@material-ui/core/ListItemText" :default ListItemText]
+            ["@material-ui/core/ListItemSecondaryAction" :default ListItemSecondaryAction]
             ["@material-ui/core/Toolbar" :default ToolBar]
             ["@material-ui/core/IconButton" :default IconButton];
             ["@material-ui/core/Button" :default Button]
+            ["@material-ui/core/Checkbox" :default Checkbox]
             ["@material-ui/core/Fab" :default Fab]
-            ["@material-ui/core/Dialog" :default Dialog]
-            ["@material-ui/core/DialogTitle" :default DialogTitle]
-            ["@material-ui/core/DialogContentText" :default DialogContentText]
-            ["@material-ui/core/DialogActions" :default DialogActions]
-            ["@material-ui/core/DialogContent" :default DialogContent]
-            ["@material-ui/core/Slide" :default Slide]
-            
             ["@material-ui/icons/List" :default ListIcon]
             ["@material-ui/icons/Info" :default InfoIcon]
-            ["@material-ui/icons/Add" :default AddIcon]))
+            ["@material-ui/icons/Add" :default AddIcon]
+            ["@material-ui/icons/Delete" :default DeleteIcon]))
 ;
 
 (defn custom-theme []
@@ -47,27 +48,6 @@
             ;;; !!! :font-family "Roboto, sans-serif"}})))
             ;:fontSize 12}})))
 
-(defn dialog-component
-  []
-  (let [dialog-input-atom (r/atom {:title ""
-                                   :description ""})]
-    [:> Dialog {:fullscreen "true" :open (:is-modal-open @app-state-atom) :onClose (fn []
-                                                                                     (close-add-modal!))
-                :keepMounted true
-                :TransitionComponent Slide
-                :Transition-props     {:direction "up"}}
-     [:> DialogTitle "Create new To Do"]
-     [:> DialogContent
-      [:> DialogContentText "Please enter a title and description for the new to do"]
-      [:> TextField {:margin "dense" :id "title-field" :label "Title" :required true :fullWidth true :onChange (fn [event]
-                                                                                                                 (swap! dialog-input-atom assoc :title (.-value (.-target event))))}]
-      [:> TextField {:margin "dense" :id "description-field" :label "Description" :required true :fullWidth true :onChange (fn [event]
-                                                                                                                             (swap! dialog-input-atom assoc :description (.-value (.-target event))))}]]
-     [:> DialogActions
-      [:> Button {:color "secondary" :onClick (fn []
-                                                (close-add-modal!))} "cancel"]
-      [:> Button {:color "primary" :onClick (fn []
-                                              (create-to-do! (:title @dialog-input-atom) (:description @dialog-input-atom)))} "Create"]]]))
 
 (defn frame
   [content]
@@ -96,16 +76,14 @@
                 [:> ListItemText (:title item)]])
              [{:title "To Do List" :icon ListIcon :key :todo}
               {:title "About this App" :icon InfoIcon :key :info}])]]]]
-    [:h1 "This is my first, HELLO!"]
-    [:> Button {:color :primary :variant :contained :onClick (fn []
-                                                               (change-content! "TESTSTES"))}  "button"]
+    (todo-list @app-state-atom)
     [:> Fab {:color :primary :aria-label "add" :style {:position "absolute"
                                                        :bottom "1rem"
                                                        :right "1rem"}
              :onClick (fn []
                         (open-add-modal!))}
      [:> AddIcon]]
-    (dialog-component)]])
+    (create-todo-dialog)]])
 
 
 (defn app-component
