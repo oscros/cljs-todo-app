@@ -12,6 +12,7 @@
             [app.frontend.state :refer [app-state-atom]]
             [app.frontend.createTodoDialog :refer [create-todo-dialog]]
             [app.frontend.todoList :refer [todo-list]]
+            [app.frontend.confirmDeletionDialog :refer [confirm-deletion-dialog]]
             ["@material-ui/core/styles" :rename {ThemeProvider MuiThemeProvider}]
             ["@material-ui/core/styles" :refer [createMuiTheme makeStyles]]
             ["@material-ui/core/colors" :as mui-colors]
@@ -50,7 +51,7 @@
 
 
 (defn frame
-  [content]
+  [state]
   [:> MuiThemeProvider
    {:theme (custom-theme)}
    [:<> ;div {:class :root}
@@ -63,7 +64,7 @@
        {:variant "h6" :color "inherit" :no-wrap true}
        "To Do List"]
       [:> SwipeableDrawer {:anchor "left"
-                           :open (:is-drawer-open @app-state-atom)
+                           :open (:is-drawer-open state)
                            :onClose (fn []
                                       (close-drawer!))
                            :onOpen (fn []
@@ -76,14 +77,15 @@
                 [:> ListItemText (:title item)]])
              [{:title "To Do List" :icon ListIcon :key :todo}
               {:title "About this App" :icon InfoIcon :key :info}])]]]]
-    (todo-list @app-state-atom)
+    (todo-list state)
     [:> Fab {:color :primary :aria-label "add" :style {:position "absolute"
                                                        :bottom "1rem"
                                                        :right "1rem"}
              :onClick (fn []
                         (open-add-modal!))}
      [:> AddIcon]]
-    (create-todo-dialog)]])
+    (create-todo-dialog state)
+    (confirm-deletion-dialog)]])
 
 
 (defn app-component
