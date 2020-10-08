@@ -1,10 +1,10 @@
 # Built With
-Leiningen 
-Clojure
-ClojureScript
-nodeJS
-Material UI
-Calva (vscode)
+* Leiningen 
+* Clojure
+* ClojureScript
+* nodeJS
+* Material UI
+* Calva (vscode)
 
 
 
