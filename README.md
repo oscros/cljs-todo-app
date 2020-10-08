@@ -7,6 +7,7 @@ Small practice app for todo handling written in Clojure and ClojureScript.
 * Leiningen 
 * Clojure
 * ClojureScript
+* Reagent
 * nodeJS
 * Material UI
 * Calva (vscode)
