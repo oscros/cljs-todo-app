@@ -1,12 +1,16 @@
-python -m SimpleHTTPServer
-
-# Requirements
+# Built With
 Leiningen 
 Clojure
-Calva
+ClojureScript
 nodeJS
-s
+Material UI
+Calva (vscode)
 
+
+
+
+
+# My Notes 
 
 # How to connect calva 
 https://www.youtube.com/watch?v=c9I1B1VZies
@@ -14,11 +18,9 @@ https://www.youtube.com/watch?v=c9I1B1VZies
 2. press ctrl+alt+c twice
 3. choose :app build
 
-
 to run  tests: ctrl+alt+c t
 
-
-# State management options
+# State management thoughts
 * Split upp global ratom into view-state and logic-state (future backend) and keep all state there. 
 * ~~Only have state in a global ratom~~
 * ~~have component specific state (only transient state, i.e temporary state which will disappear) in each component and global/logic state in globar ratom~~
