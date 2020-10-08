@@ -1,3 +1,8 @@
+
+# Todo app
+Small practice app for todo handling written in Clojure and ClojureScript. 
+
+
 ### Built With
 * Leiningen 
 * Clojure
@@ -25,7 +30,8 @@ to run  tests: ctrl+alt+c t
 * ~~Only have state in a global ratom~~
 * ~~have component specific state (only transient state, i.e temporary state which will disappear) in each component and global/logic state in globar ratom~~
 
-### TODO
+### TODO/Future ideas
 1. fix state management above
 2. organize files according to features or views?
-3. serviceworker [youtube example](https://www.youtube.com/watch?v=atUdVSuNRjA) [github example](https://github.com/surabayajs/calculator-pwa-clojurescript/blob/master/src/calculator_app/core.cljs)  
+3. make PWA serviceworker [youtube example](https://www.youtube.com/watch?v=atUdVSuNRjA) [github example](https://github.com/surabayajs/calculator-pwa-clojurescript/blob/master/src/calculator_app/core.cljs)  
+4. hook up to firebase with login functionality and persistant data storage
