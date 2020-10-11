@@ -1,6 +1,6 @@
 
 (ns app.frontend.todoList
-  (:require [app.frontend.events :refer [switch-todo-done-state!
+  (:require [app.frontend.shared.events :refer [switch-todo-done-state!
                                          remove-todo!]]
             [app.logic.core :refer [is-todo-done?]]
             [app.frontend.confirmDeletionDialog :refer [open-deletion-dialog]]
@@ -21,11 +21,14 @@
    (map (fn [item]
           [:> ListItem {:button true :key (:id item)}
            [:> ListItemIcon
-            [:> Checkbox {:edge "start" :checked (is-todo-done? app-state (:id item)) :onClick (fn []                                                       
+            [:> Checkbox {:edge "start" :checked (is-todo-done? (:core-state app-state) (:id item)) :onClick (fn []                                                       
                                                                          (switch-todo-done-state! (:id item)))}]]
-           [:> ListItemText (:title item)]
+           [:> ListItemText (if (is-todo-done? (:core-state app-state) (:id item))
+                              {:style {:text-decoration "line-through"}}
+                              {})
+            (:title item)]
            [:> ListItemSecondaryAction
             [:> IconButton {:edge "end" :aria-label "delete" :onClick (fn []
                                                                         (open-deletion-dialog (:id item)))}
              [:> DeleteIcon]]]])
-        (:todo-list app-state))])
+        (:todo-list (:core-state app-state)))])

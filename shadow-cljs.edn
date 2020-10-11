@@ -19,7 +19,7 @@
 
         :modules
         {:main
-         {:entries [app.frontend.core]}}
+         {:entries [app.frontend.main]}}
         :devtools
         {:preloads [devtools.core]
          :http-root   "public"

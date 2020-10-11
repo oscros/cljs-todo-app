@@ -1,4 +1,4 @@
-(ns app.frontend.core
+(ns app.frontend.main
   (:require [reagent.dom :as rdom]
             [app.frontend.view :refer [app-component]]))
 (enable-console-print!)

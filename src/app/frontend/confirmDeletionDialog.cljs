@@ -1,6 +1,6 @@
 (ns app.frontend.confirmDeletionDialog
   (:require [reagent.core :as r]
-            [app.frontend.events :refer [close-add-modal!
+            [app.frontend.shared.events :refer [close-add-modal!
                                          remove-todo!]]
             ["@material-ui/core/TextField" :default TextField]
             ["@material-ui/core/Button" :default Button]
@@ -11,7 +11,7 @@
             ["@material-ui/core/DialogContent" :default DialogContent]
             ["@material-ui/core/Slide" :default Slide]))
 
-;; state and open/close handled in the component itself
+;; state and open/close handled in the component itself because of the item-id is only relevant to this component
 
 (defonce deletion-dialog-atom (r/atom {:item-id nil :dialog-open false}))
 
@@ -27,7 +27,6 @@
   []
   [:> Dialog {:fullscreen "true" :open (:dialog-open @deletion-dialog-atom) :onClose (fn []
                                                                                        (close-add-modal!))
-              :keepMounted true
               :TransitionComponent Slide
               :Transition-props     {:direction "up"}}
    [:> DialogTitle "Please Confirm Deletion"]

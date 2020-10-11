@@ -1,6 +1,5 @@
 (ns app.logic.core
-  (:require [ysera.random :refer [random-nth
-                                  get-random-int]]
+  (:require [ysera.random :refer [get-random-int]]
             [ysera.test :refer [is=
                                 is
                                 error?]]
@@ -11,14 +10,10 @@
            (is= (create-empty-app-state)
                 {:count 0
                  :seed 35651602
-                 :is-drawer-open false
-                 :is-modal-open false
                  :todo-list []}))}
   []
   {:count 0
    :seed 35651602
-   :is-drawer-open false
-   :is-modal-open false
    :todo-list []})
 
 (defn create-app-state
@@ -27,8 +22,6 @@
            (is= (create-app-state :count 100 :todo-list [{:id 1 :title "title" :description "description" :done false}])
                 {:count 100
                  :seed 35651602
-                 :is-drawer-open false
-                 :is-modal-open false
                  :todo-list [{:id 1 :title "title" :description "description" :done false}]}))}
   [& kvs]
   (let [state (create-empty-app-state)]

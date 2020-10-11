@@ -1,15 +1,15 @@
 (ns app.frontend.view
   (:require [reagent.core :as r]
-            [app.frontend.events :refer [change-content!
-                                         open-drawer!
+            [app.frontend.shared.events :refer [open-drawer!
                                          close-drawer!
                                          open-add-modal!
                                          close-add-modal!
                                          create-to-do!
                                          switch-todo-done-state!
                                          remove-todo!]]
+            [app.frontend.shared.subscriptions :refer [is-drawer-open?]]
             [app.logic.core :refer [is-todo-done?]]
-            [app.frontend.state :refer [app-state-atom]]
+            [app.frontend.shared.state :refer [app-state-atom]]
             [app.frontend.createTodoDialog :refer [create-todo-dialog]]
             [app.frontend.todoList :refer [todo-list]]
             [app.frontend.confirmDeletionDialog :refer [confirm-deletion-dialog]]
@@ -64,7 +64,7 @@
        {:variant "h6" :color "inherit" :no-wrap true}
        "To Do List"]
       [:> SwipeableDrawer {:anchor "left"
-                           :open (:is-drawer-open state)
+                           :open (is-drawer-open? state)
                            :onClose (fn []
                                       (close-drawer!))
                            :onOpen (fn []
@@ -77,15 +77,15 @@
                 [:> ListItemText (:title item)]])
              [{:title "To Do List" :icon ListIcon :key :todo}
               {:title "About this App" :icon InfoIcon :key :info}])]]]]
-    (todo-list state)
+    [todo-list state]
     [:> Fab {:color :primary :aria-label "add" :style {:position "absolute"
                                                        :bottom "1rem"
                                                        :right "1rem"}
              :onClick (fn []
                         (open-add-modal!))}
      [:> AddIcon]]
-    (create-todo-dialog state)
-    (confirm-deletion-dialog)]])
+    [create-todo-dialog state]
+    [confirm-deletion-dialog]]])
 
 
 (defn app-component
