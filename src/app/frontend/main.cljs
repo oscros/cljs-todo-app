@@ -9,4 +9,10 @@
 
 (defn ^:export main
   []
+
+  (try
+    (-> (. js/navigator.serviceWorker (register "/service-worker.js"))
+        (.then (fn [] (js/console.log "service worker registered"))))
+
+    (catch js/Object err (js/console.error "Failed to register service worker" err)))
   (start))
