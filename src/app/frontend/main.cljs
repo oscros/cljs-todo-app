@@ -7,12 +7,11 @@
   (rdom/render [app-component ]
                             (.getElementById js/document "app")))
 
+(defn- make-progressive! []
+  (when js/navigator.serviceWorker
+    (.register js/navigator.serviceWorker "/service-worker.js")))
+
 (defn ^:export main
   []
-
-  (try
-    (-> (. js/navigator.serviceWorker (register "/service-worker.js"))
-        (.then (fn [] (js/console.log "service worker registered"))))
-
-    (catch js/Object err (js/console.error "Failed to register service worker" err)))
+  (make-progressive!)
   (start))

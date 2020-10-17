@@ -3,9 +3,9 @@ const CACHE_NAME = 'static-cache-v1';
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
-    '/js/main.js',
     'js/manifest.edn',
     '/manifest.json',
+    '/js/main.js',
     'favicon.ico'
 ];
 
