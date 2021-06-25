@@ -36,6 +36,11 @@
   (->> (remove-todo (:core-state @app-state-atom) id)
        (swap! app-state-atom assoc :core-state)))
 
+(defn navigate-to!
+  [destination]
+  (print "navigating")
+  (swap! app-state-atom assoc-in [:view-state :view] destination))
+
 ;; (defn touch-state-change!
 ;;   [touch-state]
 ;;   (swap! app-state-atom assoc :touch-state touch-state))

@@ -12,6 +12,11 @@ Small practice app for todo handling written in Clojure and ClojureScript.
 * Material UI
 * Calva (vscode)
 
+### Requirements
+* Node.js & NPM
+* Leiningen
+* shadow-cljs
+
 
 
 

@@ -2,7 +2,6 @@
   (:require [reagent.core :as r]
             [app.frontend.shared.events :refer [close-add-modal!
                                          remove-todo!]]
-            ["@material-ui/core/TextField" :default TextField]
             ["@material-ui/core/Button" :default Button]
             ["@material-ui/core/Dialog" :default Dialog]
             ["@material-ui/core/DialogTitle" :default DialogTitle]

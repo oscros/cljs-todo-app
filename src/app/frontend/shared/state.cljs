@@ -3,7 +3,8 @@
             [app.logic.core :refer [create-app-state]]))
 
 (defonce app-state-atom (atom {:view-state {:is-drawer-open false
-                                            :is-todo-dialog-open false}
+                                            :is-todo-dialog-open false
+                                            :view :todo-list-page}
                                :core-state (create-app-state)}))
 
 

@@ -7,3 +7,7 @@
 (defn is-todo-dialog-open?
   [state]
   (get-in state [:view-state :is-todo-dialog-open]))
+
+(defn get-current-view
+  [state]
+  (get-in state [:view-state :view]))
