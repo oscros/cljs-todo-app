@@ -38,5 +38,8 @@ to run  tests: ctrl+alt+c t
 
 ### TODO/Future ideas
 1. make PWA serviceworker [youtube example](https://www.youtube.com/watch?v=atUdVSuNRjA) [github example](https://github.com/surabayajs/calculator-pwa-clojurescript/blob/master/src/calculator_app/core.cljs) 
-2. Fill in about page and fix drawer icon
-3. hook up to firebase with login functionality and persistant data storage
+2. hook up to firebase with login functionality and persistant data storage
+
+
+### Commands
+* To build release version of app: `shadow-cljs release app`
